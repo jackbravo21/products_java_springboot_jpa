@@ -29,30 +29,30 @@ public class ProductController {
 	}
 	
 	@PutMapping("/edit")
-    public ResponseEntity<ProductModel> editProduct(@RequestBody ProductDTO productDTO) {
-        ProductModel updatedProduct = productService.serviceProductEdit(productDTO);
-        return ResponseEntity.ok(updatedProduct);
-    }
+	public ResponseEntity<ProductModel> editProduct(@RequestBody ProductDTO productDTO) {
+		ProductModel updatedProduct = productService.serviceProductEdit(productDTO);
+        	return ResponseEntity.ok(updatedProduct);
+    	}
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
-        boolean deleted = productService.serviceProductDelete(id);
-        return deleted ? ResponseEntity.ok("Produto deletado com sucesso!") :
+    	@DeleteMapping("/delete/{id}")
+    	public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        	boolean deleted = productService.serviceProductDelete(id);
+        	return deleted ? ResponseEntity.ok("Produto deletado com sucesso!") :
                          ResponseEntity.status(404).body("Produto não encontrado!");
-    }
+    	}
 
-    @GetMapping("/one/{id}")
-    public ResponseEntity<ProductModel> getOneProduct(@PathVariable Long id) {
-        Optional<ProductModel> product = productService.serviceGetProduct(id);
-        return product.map(ResponseEntity::ok)
+   	@GetMapping("/one/{id}")
+    	public ResponseEntity<ProductModel> getOneProduct(@PathVariable Long id) {
+        	Optional<ProductModel> product = productService.serviceGetProduct(id);
+        	return product.map(ResponseEntity::ok)
                       .orElseGet(() -> ResponseEntity.status(404).build());
-    }
+    	}
 
-    @GetMapping("/all/{type}")
-    public ResponseEntity<List<ProductModel>> getAllProducts(@PathVariable String type) {
-        List<ProductModel> products = productService.serviceSelectAll(type);
-        return ResponseEntity.ok(products);
-    }
+    	@GetMapping("/all/{type}")
+    	public ResponseEntity<List<ProductModel>> getAllProducts(@PathVariable String type) {
+        	List<ProductModel> products = productService.serviceSelectAll(type);
+        	return ResponseEntity.ok(products);
+    	}
 
 }
 
